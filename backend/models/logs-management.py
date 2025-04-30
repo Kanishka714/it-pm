@@ -231,3 +231,4 @@ def main():
         elif choice == '7':
             history = calc.get_history()
             for entry in history:
+return "evwef"
