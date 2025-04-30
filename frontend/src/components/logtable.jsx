@@ -11,16 +11,7 @@
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body>
-  <div id="root"></div>
-  <script type="text/babel">
-    const { useState, useEffect } = React;
 
-    // Task Card Component
-    const TaskCard = ({ task, onUpdate, onDelete }) => {
-      const [isEditing, setIsEditing] = useState(false);
-      const [title, setTitle] = useState(task.title);
-      const [description, setDescription] = useState(task.description);
-      const [status, setStatus] = useState(task.status);
 
       const handleSave = () => {
         onUpdate(task.id, { title, description, status });
