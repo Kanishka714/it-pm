@@ -68,3 +68,19 @@ if __name__ == "__main__":
     
     # Test the trained model
     test_model(model_dir="/Users/kanishka/horapara/ner_model")
+
+
+            # Parse and return the extracted data
+        response_text = completion.choices[0].message.content.replace('```', '').replace('json', '').strip()
+
+        # Convert the JSON-formatted string to a Python dictionary
+        extracted_data = json.loads(response_text)
+
+        return extracted_data
+
+    except json.JSONDecodeError:
+        return {"error": "Could not parse the extracted JSON data from the image."}
+    except Exception as e:
+        return {"error": str(e)}
+
+#print(extract_vehicle_maintenance_data("./static/uploads/invoice123.png"))
