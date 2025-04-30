@@ -64,5 +64,14 @@ def delete_vehicle(vin):
         return jsonify({"error": "Vehicle not found"}), 404
     return jsonify({"message": "Vehicle deleted"}), 200
 
+# Route 5: Get single vehicle by VIN
+@app.route('/vehicles/<vin>', methods=['GET'])
+def get_vehicle_by_vin(vin):
+    vehicle = vehicle_collection.find_one({"vin": vin})
+    if not vehicle:
+        return jsonify({"error": "Vehicle not found"}), 404
+    vehicle['_id'] = str(vehicle['_id'])
+    return jsonify(vehicle), 200
+
 if __name__ == '__main__':
     app.run(debug=True)
