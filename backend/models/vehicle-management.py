@@ -17,6 +17,11 @@ def validate_vehicle(data):
     for field in required:
         if field not in data or not data[field]:
             return False, f"{field} is required"
+    
+    vin = data['vin']
+    if len(vin) != 17:
+        return False, "VIN must be exactly 17 characters"
+    
     return True, ""
 
 # Route 1: Add a new vehicle
