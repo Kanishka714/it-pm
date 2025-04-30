@@ -231,18 +231,3 @@ def main():
         elif choice == '7':
             history = calc.get_history()
             for entry in history:
-                print(f"{entry['timestamp']}: {entry['operation']} = {entry['result']}")
-        
-        elif choice == '8':
-            result = calc.clear_history()
-            print(result)
-        
-        elif choice == '9':
-            print("Goodbye!")
-            break
-        
-        else:
-            print("Invalid choice. Please try again.")
-
-if __name__ == "__main__":
-    main()
