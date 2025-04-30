@@ -73,5 +73,14 @@ def get_vehicle_by_vin(vin):
     vehicle['_id'] = str(vehicle['_id'])
     return jsonify(vehicle), 200
 
+# Route 6: Vehicle status summary report
+@app.route('/vehicles/status-report', methods=['GET'])
+def vehicle_status_report():
+    pipeline = [
+        {"$group": {"_id": "$status", "count": {"$sum": 1}}}
+    ]
+    report = list(vehicle_collection.aggregate(pipeline))
+    return jsonify(report), 200
+
 if __name__ == '__main__':
     app.run(debug=True)
