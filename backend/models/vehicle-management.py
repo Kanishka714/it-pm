@@ -87,5 +87,11 @@ def vehicle_status_report():
     report = list(vehicle_collection.aggregate(pipeline))
     return jsonify(report), 200
 
+# Route 7: Reset all vehicle statuses to 'Pending'
+@app.route('/vehicles/reset-status', methods=['PUT'])
+def reset_all_statuses():
+    result = vehicle_collection.update_many({}, {"$set": {"status": "Pending"}})
+    return jsonify({"message": f"Reset status for {result.modified_count} vehicles"}), 200
+
 if __name__ == '__main__':
     app.run(debug=True)
